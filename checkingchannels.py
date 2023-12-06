@@ -11,12 +11,13 @@ except ImportError:
 
 
 # --- Solid Color Command
-# Example ser.write(b"51,10,0,1000,1,100,100,100 \n")
+# Example ser.write(b"51,10,0,1000,1,20,100,100,100 \n")
 # 51 : Start of command
 # 10 : Configure Event
 # 0  : LED Strip 0
 # 1000 : Start time in milliseconds
 # 1 : Solid Color Animation ID
+# 20 : Fade Speed
 # 100 : Color Red
 # 100 : Color Green
 # 100 : Color Blue
@@ -39,7 +40,7 @@ except ImportError:
 # 50 : Tail Color Blue
 
 # --- Playbar Pattern
-# Example ser.write(b"51,10,0,15000,3,30,0,0,0,100,0,100,100 \n")
+# Example ser.write(b"51,10,0,15000,3,30,0,0,180,0,0,100,0,100,100 \n")
 # 51 : Start of command
 # 10 : Configure Event
 # 0  : LED Strip 0
@@ -47,6 +48,8 @@ except ImportError:
 # 3 : Playbar Pattern Animation ID
 # 30 : Rate of movement (1-50, higher number faster)
 # 0 : Direction of moment (0 outwards, 1 inwards)
+# 0 : Start Pixel
+# 180 : End Pixel
 # 0 : Orb Color Red
 # 0 : Orb Color Green
 # 100 : Orb Color Blue
@@ -76,7 +79,6 @@ def send_and_receive(ser):
             ser.write(b"51,12 \n") #clears event buffer
             
             # ------------- Registering Events ---------------
-            #ser.write(b"51,10,0,0,4,2000,0,0,100,0,100,100 \n")
             
             ser.write(b"51,10,0,0,1,20,255,0,0 \n")
             ser.write(b"51,10,0,2000,1,20,0,0,0 \n")
