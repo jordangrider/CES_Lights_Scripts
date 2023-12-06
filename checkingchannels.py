@@ -112,9 +112,9 @@ def send_and_receive(ser):
 
 def check_serial_port(port):
     try:
-        ser = serial.Serial(port, baudrate=115200, timeout=0.005)
+        ser = serial.Serial(port, baudrate=115200, timeout=0.01)
         ser.write(b"51,0\r\n")
-        time.sleep(0.001)
+        time.sleep(0.01)
         response = ser.readline().decode().strip()
         ser.close()
         if response == "2":
